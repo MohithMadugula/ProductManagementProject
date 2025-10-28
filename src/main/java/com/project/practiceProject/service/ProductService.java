@@ -1,14 +1,13 @@
 package com.project.practiceProject.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.project.practiceProject.model.Product;
+import com.project.practiceProject.dto.ProductDTO;
 
 public interface ProductService {
-	public List<Product> getAllProducts();
-	public Product createProduct(Product product);
-	public Optional<Product> findById(long id);
-	public Optional<Product> findByName(String name);
-	public void deleteById(long id);
+	public List<ProductDTO> getAllProducts();
+	public ProductDTO createProduct(ProductDTO productDTO);
+	public ProductDTO findById(long id);
+	public ProductDTO findByName(String name);
+	public String deleteById(long id);
 }

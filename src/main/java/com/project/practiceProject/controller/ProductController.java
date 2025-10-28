@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.practiceProject.exception.ProductNotFoundException;
-import com.project.practiceProject.model.Product;
+import com.project.practiceProject.dto.ProductDTO;
 import com.project.practiceProject.service.ProductService;
 
 @RestController
@@ -27,34 +25,29 @@ public class ProductController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Product>> getAllProducts(){
-		List<Product> products = productService.getAllProducts();
+	public ResponseEntity<List<ProductDTO>> getAllProducts(){
+		List<ProductDTO> products = productService.getAllProducts();
 		return ResponseEntity.ok(products);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-		Product postedProduct = productService.createProduct(product);
-		return ResponseEntity.ok(postedProduct);
+	public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+		return ResponseEntity.ok(productService.createProduct(productDTO));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> findById(@PathVariable long id ){
-		Product product = productService.findById(id).
-				orElseThrow(()-> new ProductNotFoundException("Product not found with id : "+id));
-		return ResponseEntity.ok(product);
+	public ResponseEntity<ProductDTO> findById(@PathVariable long id ){
+		return ResponseEntity.ok(productService.findById(id));
 	}
 	
 	@GetMapping("/productByName/{name}")
-	public ResponseEntity<?> findByName(@PathVariable String name){
-		Product product = productService.findByName(name).
-				orElseThrow(()-> new ProductNotFoundException("Product not found with id : "+name));
-		return ResponseEntity.ok(product);
+	public ResponseEntity<ProductDTO> findByName(@PathVariable String name){
+		return ResponseEntity.ok(productService.findByName(name));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteById(@PathVariable long id) {
-		productService.deleteById(id);
+	public ResponseEntity<String> deleteById(@PathVariable long id) {
+		return ResponseEntity.ok(productService.deleteById(id));
 	}
 	
 	
