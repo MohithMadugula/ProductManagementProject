@@ -9,5 +9,4 @@ public interface ProductService {
 	public ProductDTO createProduct(ProductDTO productDTO);
 	public ProductDTO findById(long id);
 	public ProductDTO findByName(String name);
-	public String deleteById(long id);
 }
