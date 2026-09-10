@@ -19,7 +19,6 @@ public class ProductRequest {
 	private Double price;
 	
 	@NotNull(message="quantiy is required")
-	@Min(value = 0,message="quantity must be greater than 0")
 	private Integer quantity;
 
 }
