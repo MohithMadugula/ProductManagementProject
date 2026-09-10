@@ -12,6 +12,7 @@ public class PracticeProjectApplication {
 		
 		SpringApplication.run(PracticeProjectApplication.class, args);
 		System.out.println("Application ended");
+		System.out.println("Application Started");
 	}
 
 
